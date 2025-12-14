@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/plant-pal/",   // 👈 add this
+  base: "/plant-pal/",   // ✅ exact repo name with trailing slash
 
   server: {
     host: "::",
