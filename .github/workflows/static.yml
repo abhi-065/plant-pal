@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     environment:
-      name: github-pages
+      name: github-pages   # 👈 required for deploy-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
@@ -33,11 +33,14 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Upload build
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload build artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          path: dist
+          path: dist        # 👈 make sure it points to Vite's dist folder
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
